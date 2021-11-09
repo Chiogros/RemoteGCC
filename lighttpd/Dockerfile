@@ -9,11 +9,13 @@ RUN apt-get install -y lighttpd
 EXPOSE 8080 80
 
 # Copy new websites files
-RUN rm -rf /var/www/html
-COPY html /var/www
+RUN rm -rf /var/www/html/*
+COPY html /var/www/html
+RUN chown www-data:www-data -R /var/www/html
 
 # website folder
 WORKDIR /var/www/html
 
 # Start lighttpd
+ENTRYPOINT ["ls", "-l", "/var/www"]
 ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]

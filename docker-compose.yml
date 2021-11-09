@@ -6,7 +6,7 @@ services:
       - compile:/mnt/out
       - ${BINARIES_DIR}:/mnt/in
     ports:
-      - 8080:80
+      - ${HTTPD_PORT}:80
 
   gcc-compiler:
     build: $PWD/gcc/

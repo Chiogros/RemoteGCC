@@ -8,6 +8,14 @@ RUN apt-get install -y lighttpd
 # Port exposure
 EXPOSE 8080 80
 
+# Specify volumes
+# bring pushed files
+VOLUME /mnt/out
+# get compiled files (binaries)
+VOLUME /mnt/in
+# get compilation logs
+VOLUME /mnt/logs
+
 # Copy new websites files
 RUN rm -rf /var/www/html/*
 COPY html /var/www/html

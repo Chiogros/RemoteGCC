@@ -1,8 +1,8 @@
 <?php
 
-$inputFolder = getenv('inputFolder');
-$outputFolder = getenv('outputFolder');
-$logFile = getenv('logFile');
+$inputFolder = "/tmp";
+$outputFolder = "/tmp";
+$logFile = "/var/log/apache2/access.log";
 
 ?>
 
@@ -42,18 +42,19 @@ $logFile = getenv('logFile');
 						$f = fopen($logFile, "r");
 						if (!$f) {
 							 printf("Log file not available.");
+						} else {
+							 $content = "";
+							 # Read log content
+							 while (!feof($f)) {
+									$content .= fread($f, 1024);
+							 }
+
+							 # Print log file
+							 print($content);
+
+							 fclose($f);
 						}
 
-						$content = "";
-						# Read log content
-						while (!feof($f)) {
-							 $content .= fread($f, 1024);
-						}
-
-						# Print log file
-						print($content);
-
-						fclose($f);
 				 ?>
 				 </p>
 			</article>

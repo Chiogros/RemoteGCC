@@ -2,14 +2,14 @@
 
 ### looks for make & .c files in /mnt/in, compile them, put them on /mnt/out ###
 ### compilation trigger => existence of ok.gcc file in /mnt/in ###
-
+cd /mnt/in
 while true; do
 
     if [ -f ok.gcc ]; then
-        #if there is a makefile process it
-        if [ -f make ]; then
-            make
 
+        #if there is a makefile process it
+        if [ -f Makefile ]; then
+            make
         #else if there is C files compile them
         elif [ -f *.c ]; then
             for c_file in *.c; do
@@ -28,9 +28,10 @@ while true; do
         #CLEAR IN FOLDER
         rm *.c
         rm Makefile
+        rm ok.gcc
 
         #MV COMPILED CODE TO OUT FOLDER
-        mv * /mnt/out
+        mv * /mnt/out/
     fi
 sleep 5
 done

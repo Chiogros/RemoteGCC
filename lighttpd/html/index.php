@@ -1,8 +1,12 @@
 <?php
 
-$inputFolder = "/tmp";
-$outputFolder = "/tmp";
-$logFile = "/var/log/apache2/access.log";
+$toCompile = "/mnt/out/";
+$compiled = "/mnt/in/";
+$logFile = "/mnt/log/access.log";
+
+// $toCompile = "/mnt/out";
+// $compiled = "/mnt/in";
+// $logFile = "/mnt/log";
 
 ?>
 
@@ -22,16 +26,19 @@ $logFile = "/var/log/apache2/access.log";
 			<h2>Inputs</h2>
 			<div class="filesList">
 				<?php
-				$dir = opendir($inputFolder);
+				$dir = opendir($toCompile);
 				while ($filename = readdir($dir)) { 
 					if ($filename == "." || $filename == "..") continue; ?>
-					<p><?= $filename ?></p>
+					<a href="removeFile.php?filename=<?= $filename ?>">
+						<p><?= $filename ?></p>
+					</a>
 					<hr/>
 				<?php } ?>
 			</div>
 			<form method="POST" action="filesUpload.php" enctype="multipart/form-data">
 				<label for="filesToUpload">Upload files</label>
 				<input type="file" name="filesToUpload[]" accept="Makefile,.c,.h" multiple />
+				<input type="hidden" name="path" value="<?= $toCompile ?>"/>
 				<input type="submit" value="Push"/>
 			</form> 
 		</article>
@@ -42,7 +49,7 @@ $logFile = "/var/log/apache2/access.log";
 			# Open file
 			$f = fopen($logFile, "r");
 			if (!$f) {
-				 printf("Log file not available.");
+				 printf("Log file not available...");
 			} else {
 				 $content = "";
 				 # Read log content
@@ -62,7 +69,7 @@ $logFile = "/var/log/apache2/access.log";
 			<h2>Binaries</h2>
 			<div class="filesList">
 				<?php
-				$dir = opendir($outputFolder);
+				$dir = opendir($compiled);
 				while ($filename = readdir($dir)) { 
 					if ($filename == "." || $filename == "..") continue; ?>
 					<p><?= $filename ?></p>

@@ -5,6 +5,7 @@ services:
     volumes:
       - compile:/mnt/out
       - ${BINARIES_DIR}:/mnt/in
+      - log:/mnt/log
     ports:
       - ${HTTPD_PORT}:80
 
@@ -13,5 +14,7 @@ services:
     volumes:
       - compile:/mnt/in
       - ${BINARIES_DIR}:/mnt/out
+      - log:/mnt/log
 volumes:
   compile:
+  log:

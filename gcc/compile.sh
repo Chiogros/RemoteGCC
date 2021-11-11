@@ -29,7 +29,7 @@ while true; do
 		rm -f $binaries
 		
 		# if there is a makefile, process it
-		if [ -f Makefile ]; then
+		if [ -f makefile ]; then
 			make
 		
 		# else if there are C files, compile them

@@ -1,5 +1,5 @@
 # RemoteGCC
-MI4 - Remote GCC compiler in docker images
+MI4 - Remote GCC compiler with docker images
 
 ##  What's embedeed?
 

@@ -19,10 +19,10 @@ docker-compose up
 
 Then check [http://localhost:8080/](http://localhost:8080/)
 
-1. add your `Makefile` and `.c` files
+1. add your `.c` files (with `.h` and `makefile` if needed, depends your needs). If no `makefile` is present, all `.c` files will be independently compiled.
 2. click `Compile`
 3. watch `gcc` logs
-4. download the output binaries (also available in `i./binaries`)
+4. download the output binaries (also available in `./binaries`)
 
 ## Rid of default values?
 

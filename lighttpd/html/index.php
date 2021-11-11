@@ -2,11 +2,7 @@
 
 $toCompile = "/mnt/out/";
 $compiled = "/mnt/in/";
-$logFile = "/mnt/log/access.log";
-
-// $toCompile = "/mnt/out";
-// $compiled = "/mnt/in";
-// $logFile = "/mnt/log/compilation.log";
+$logFile = "/mnt/log/compilation.log";
 
 ?>
 
@@ -77,7 +73,9 @@ $logFile = "/mnt/log/access.log";
 				$dir = opendir($compiled);
 				while ($filename = readdir($dir)) { 
 					if ($filename == "." || $filename == "..") continue; ?>
-					<p><?= $filename ?></p>
+					<a href="<?= $compiled . $filename ?>" download>
+						<p><?= $filename ?></p>
+					</a>
 					<hr/>
 				<?php } ?>
 			</div>

@@ -48,20 +48,17 @@ $logFile = "/mnt/log/compilation.log";
 			<p id="log">
 			<?php
 			# Open file
-			$f = fopen($logFile, "r");
-			if (!$f) {
+			if (!file_exists($logFile)) {
 				 printf("Log file not available...");
 			} else {
 				 $content = "";
 				 # Read log content
-				 while (!feof($f)) {
-						$content .= fread($f, 1024);
+				 foreach (file($logFile) as $line) {
+					$content .= $line;
 				 }
-
+				 
 				 # Print log file
-				 print($content);
-
-				 fclose($f);
+				 print(nl2br($content));
 			}
 			?>
 			</p>

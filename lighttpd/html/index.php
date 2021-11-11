@@ -6,7 +6,7 @@ $logFile = "/mnt/log/access.log";
 
 // $toCompile = "/mnt/out";
 // $compiled = "/mnt/in";
-// $logFile = "/mnt/log";
+// $logFile = "/mnt/log/compilation.log";
 
 ?>
 
@@ -24,6 +24,11 @@ $logFile = "/mnt/log/access.log";
 	<section>
 		<article>
 			<h2>Inputs</h2>
+			<form method="POST" action="runCompilation.php" id="compile">
+				<input type="hidden" name="path" value="<?= $toCompile ?>"/>
+				<input type="hidden" name="logfile" value="<?= $logFile ?>"/>
+				<input type="submit" value="Compile">
+			</form>
 			<div class="filesList">
 				<?php
 				$dir = opendir($toCompile);

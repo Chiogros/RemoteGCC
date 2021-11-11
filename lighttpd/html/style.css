@@ -53,3 +53,9 @@ hr {
 form {
 	margin: 1em 0em;
 }
+
+#compile {
+	position: relative;
+	top: -4em;
+	float: right;
+}

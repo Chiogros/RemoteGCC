@@ -7,7 +7,7 @@ Two `debian:stable` images as bases.
 
 The former for the web interface, handled by [Lighttpd](https://www.lighttpd.net/).
 
-The latter as a GCC compiler, that receives source codes from the web interface, build binaries and bring them in a persistent volume `/mnt/binaries`.
+The latter as a GCC compiler, that receives source codes from the web interface, build binaries and bring them in a persistent volume `./binaries`.
 
 ![Conception schema](./Conception/conception.svg)
 
@@ -22,16 +22,16 @@ Then check [http://localhost:8080/](http://localhost:8080/)
 1. add your `Makefile` and `.c` files
 2. click `Compile`
 3. watch `gcc` logs
-4. download the output binary (also available in `/mnt/binaries`)
+4. download the output binaries (also available in `i./binaries`)
 
 ## Rid of default values?
 
-They are available in `.env.sample`.
+They are available in `.env`.
 
 ```bash
 # .env will be used by docker-compose for modified environment values
-cp .env.sample .env
-
 # edit values with your modified values
 vi .env
 ```
+
+Need to reset environment values? `cp .env.sample .env`

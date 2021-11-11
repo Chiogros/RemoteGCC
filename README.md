@@ -27,15 +27,20 @@ copy/paste the following link: [http://localhost:8080/](http://localhost:8080/)
 
 ## Environment variables
 Environment variables can be used to modify the behiavor of the application.<br/>
-Environment variables can be found in the .env file, at the root of the application.<hr/>
+Environment variables can be found in the .env file, at the root of the application.
+<hr/>
+
 the `BINARIES_DIR` variable tells the application where to persist the binaries <br/>
 This path appends to the REMOTEGCC folder path.<br/>
+
 ```bash
 #default value
 BINARIES_DIR=./binaries
 ```
+
 <hr/>
-the `HTTPD_PORT` variable tells the application what port to expose.
+
+the `HTTPD_PORT` variable tells the application what port to expose.<br/>
 ```bash
 #default value
 HTTPD_PORT=8080

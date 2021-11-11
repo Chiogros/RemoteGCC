@@ -31,6 +31,7 @@ while true; do
         rm ok.gcc
 
         #MV COMPILED CODE TO OUT FOLDER
+        rm * -rf /mnt/out
         mv * /mnt/out/
     fi
 sleep 5

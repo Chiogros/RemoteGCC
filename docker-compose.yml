@@ -1,0 +1,17 @@
+version: "3"
+services:
+  lighttpd:
+    build: $PWD/lighttpd/
+    volumes:
+      - compile:/mnt/out
+      - ${BINARIES_DIR}:/mnt/in
+    ports:
+      - ${HTTPD_PORT}:80
+
+  gcc-compiler:
+    build: $PWD/gcc/
+    volumes:
+      - compile:/mnt/in
+      - ${BINARIES_DIR}:/mnt/out
+volumes:
+  compile:

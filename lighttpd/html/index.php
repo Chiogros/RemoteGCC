@@ -29,8 +29,9 @@ $logFile = "/var/log/apache2/access.log";
 					<hr/>
 				<?php } ?>
 			</div>
-			<form method="POST" action="">
-				<input type="file" accept="Makefile,.c,.h" multiple />
+			<form method="POST" action="filesUpload.php" enctype="multipart/form-data">
+				<label for="filesToUpload">Upload files</label>
+				<input type="file" name="filesToUpload[]" accept="Makefile,.c,.h" multiple />
 				<input type="submit" value="Push"/>
 			</form> 
 		</article>

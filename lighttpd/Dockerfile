@@ -21,6 +21,10 @@ RUN rm -rf /var/www/html/*
 COPY html /var/www/html
 RUN chown www-data:www-data -R /var/www/html
 
+#Symbolic link in /var/www/html folder so /mnt files are accessible from there
+#so files can be downloaded.
+RUN ln -s /mnt /var/www/html
+
 # Enable php support in lighttpd
 RUN lighttpd-enable-mod fastcgi-php
 RUN mkdir /run/lighttpd

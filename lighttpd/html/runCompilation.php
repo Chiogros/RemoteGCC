@@ -1,9 +1,12 @@
 <?php
 
 $target_dir = $_POST["path"] ?? "/mnt/out/";
-$target_file = $target_dir . "compile.gcc";
+$target_file = $target_dir . "ok.gcc";
 
 $logFile = $_POST["logfile"] ?? "/mnt/out/compilation.log";
+
+// Remove old log file
+unlink($logFile);
 
 // Write compile.gcc to indicates to run compilation
 fopen($target_file, "w");

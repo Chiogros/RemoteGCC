@@ -14,7 +14,7 @@ VOLUME /mnt/out
 # get compiled files (binaries)
 VOLUME /mnt/in
 # get compilation logs
-VOLUME /mnt/logs
+VOLUME /mnt/log
 
 # Copy new websites files
 RUN rm -rf /var/www/html/*

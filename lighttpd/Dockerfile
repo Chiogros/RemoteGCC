@@ -3,7 +3,7 @@ FROM debian:stable
 # Installation
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y lighttpd php-cgi 
+RUN apt-get install -y php-cgi lighttpd 
 
 # Port exposure
 EXPOSE 8080 80
@@ -21,9 +21,16 @@ RUN rm -rf /var/www/html/*
 COPY html /var/www/html
 RUN chown www-data:www-data -R /var/www/html
 
+# Enable php support in lighttpd
+RUN lighttpd-enable-mod fastcgi-php
+RUN mkdir /run/lighttpd
+RUN chown www-data:www-data /run/lighttpd
+
+# Import startup script
+COPY startup.sh /tmp
+
 # website folder
 WORKDIR /var/www/html
 
 # Start lighttpd
-RUN ls -l /var/www/html
-ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+ENTRYPOINT ["/tmp/startup.sh"]

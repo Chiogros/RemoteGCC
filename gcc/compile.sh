@@ -35,7 +35,7 @@ while true; do
 			# Getting the name of the latest file which has been 'touched'
 			name=$(ls -t| awk 'NR==1')
 			# If the said name is == to makefile, it means that the compilation failed
-			if [ $name == "makefile" ]; then
+			if [ $name = "makefile" ]; then
 				# error logs
 				echo "Something wrong happened, this error may be due to a wrong makefile syntax." > $tmpCompilationLogFile
 			else

@@ -28,10 +28,23 @@ while true; do
 		binaries="${outFolder}*"
 		rm -f $binaries
 		
-		# if there is a makefile, process it
+		# If there is a makefile, process it
 		if [ -f makefile ]; then
-			make
-		
+			make &>> $tmpCompilationLogFile
+			
+			# Getting the name of the latest file which has been 'touched'
+			name=$(ls -t| awk 'NR==1')
+			# If the said name is == to makefile, it means that the compilation failed
+			if [ $name == "makefile" ]; then
+				# error logs
+				echo "Something wrong happened, this error may be due to a wrong makefile syntax." > $tmpCompilationLogFile
+			else
+				# move the binary to the out folder
+				mv "$name" -t "${outFolder}"
+				echo "Compilation went successful!" > "$tmpCompilationLogFile"
+			fi
+
+			
 		# else if there are C files, compile them
 		elif [ $(ls -1q *.c | wc -l) -ne 0 ]; then
 			for c_file in *.c; do
@@ -52,7 +65,7 @@ while true; do
 				echo "Compilation went successful!" > "$tmpCompilationLogFile"
 			fi
 		
-		#if there is no makefile AND no C file(s), but the ok.gcc file exists
+		# if there is no makefile AND no C file(s), but the ok.gcc file exists
 		else
 			# Need to stop webserver loop
 			echo "Nothing to compile..." > "$tmpCompilationLogFile"

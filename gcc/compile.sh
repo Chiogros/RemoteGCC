@@ -30,7 +30,6 @@ while true; do
 		# If there is a makefile, process it
 		if [ -f makefile ] || [ -f Makefile ]; then
 			make &>> $tmpCompilationLogFile
-			echo "in makefile if !"
 			# Getting the name of the latest file which has been 'touched'
 			name=$(ls -t| awk 'NR==1')
 			# If the said name is == to makefile, it means that the compilation failed
@@ -55,7 +54,6 @@ while true; do
 				
 				# Compile to out folder and log
 				gcc "$c_file" -o "$outPath" &>> "$tmpCompilationLogFile"
-				
 				echo "${c_file} compiled!"
 			done
 			

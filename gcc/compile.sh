@@ -8,7 +8,6 @@ compilationLogFile="${logFolder}compilation.log"
 tmpCompilationLogFile=/tmp/compilation.log
 
 triggerFile="ok.gcc"
-
 ### looks for make & .c files in /mnt/in, compile them, put them on /mnt/out ###
 ### compilation trigger => existence of ok.gcc file in /mnt/in ###
 cd $inFolder
@@ -29,13 +28,13 @@ while true; do
 		rm -f $binaries
 		
 		# If there is a makefile, process it
-		if [ -f makefile ]; then
+		if [ -f makefile ] || [ -f Makefile ]; then
 			make &>> $tmpCompilationLogFile
-			
+			echo "in makefile if !"
 			# Getting the name of the latest file which has been 'touched'
 			name=$(ls -t| awk 'NR==1')
 			# If the said name is == to makefile, it means that the compilation failed
-			if [ $name = "makefile" ]; then
+			if [ $name = "makefile" ] || [ $name = "makefile" ]; then
 				# error logs
 				echo "Something wrong happened, this error may be due to a wrong makefile syntax." > $tmpCompilationLogFile
 			else

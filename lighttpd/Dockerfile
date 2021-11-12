@@ -6,7 +6,7 @@ RUN apt-get upgrade -y
 RUN apt-get install -y php-cgi lighttpd 
 
 # Port exposure
-EXPOSE 8080 80
+EXPOSE 80
 
 # Specify volumes
 # bring pushed files
